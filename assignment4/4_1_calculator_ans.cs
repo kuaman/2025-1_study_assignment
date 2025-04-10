@@ -49,9 +49,95 @@ namespace calculator
     // Calculator class to perform operations
     public class Calculator
     {
-        // ---------- TODO ----------
-        
-        // --------------------
+        public double Calculate(double num1, string op, double num2)
+        {
+            switch (op)
+            {
+                case "+":
+                    return num1 + num2;
+                    break;
+
+                case "-":
+                    return num1 - num2;
+                    break;
+
+                case "*":
+                    return num1 * num2;
+                    break;
+
+                case "/":
+                    if (num2 == 0)
+                    {
+                        throw new DivideByZeroException("Division by zero is not allowed");
+                    }
+                    else
+                    {
+                        return num1 / num2;
+                    }
+                    break;
+
+                case "**":
+                    double result1 = num1;
+                    if (num2 > 0)
+                    {
+                        for (int i = 1; i < num2; i++)
+                        {
+                            result1 *= num1;
+                        }
+                        return result1;
+                    }
+                    else if (num2 < 0)
+                    {
+                        for (int i = 1; i < -num2; i++)
+                        {
+                            result1 *= num1;
+                        }
+                        return 1 / result1;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                    break;
+
+                case "%":
+                    return num1 % num2;
+                    break;
+
+                case "G":
+                    double result2 = 0;
+                    double G = num1 * num2;
+                    if (num1 < num2)
+                    {
+                        (num1, num2) = (num2, num1);
+                    }
+                    while (num2 != 0)
+                    {
+                        result2 = num2;
+                        num2 = num1 % num2;
+                    }
+                    return G / result2;
+                    break;
+
+                case "L":
+                    double result3 = 0;
+                    if (num1 < num2)
+                    {
+                        (num1, num2) = (num2, num1);
+                    }
+                    while (num2 != 0)
+                    {
+                        result3 = num2;
+                        num2 = num1 % num2;
+                    }
+                    return result3;
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Invalid operator");
+                    break;
+            }
+        }
     }
 }
 
