@@ -105,7 +105,7 @@ namespace calculator
                     break;
 
                 case "G":
-                    double result2 = 0;
+                    double r2 = 0;
                     double G = num1 * num2;
                     if (num1 < num2)
                     {
@@ -113,24 +113,26 @@ namespace calculator
                     }
                     while (num2 != 0)
                     {
-                        result2 = num2;
-                        num2 = num1 % num2;
+                        r2 = num1 % num2;
+                        num1 = num2;
+                        num2 = r2;
                     }
-                    return G / result2;
+                    return G / num1;
                     break;
 
                 case "L":
-                    double result3 = 0;
+                    double r3 = 0;
                     if (num1 < num2)
                     {
                         (num1, num2) = (num2, num1);
                     }
                     while (num2 != 0)
                     {
-                        result3 = num2;
-                        num2 = num1 % num2;
+                        r3 = num1 % num2;
+                        num1 = num2;
+                        num2 = r3;
                     }
-                    return result3;
+                    return num1;
                     break;
 
                 default:
